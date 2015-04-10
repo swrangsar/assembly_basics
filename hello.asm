@@ -53,18 +53,9 @@ _start:
 
 
 .nextnum:
-    cmp rbx, 0xa
-    jl .isdigit
-    add rbx, 0x57       ; 0x57 = 0x61 - 0xa
-    mov [res], rbx
-    sub rbx, 0x57
-    jmp .endif
-.isdigit:
-    add rbx, 0x30
-    mov [res], rbx
-    sub rbx, 0x30
-.endif:
+    push rbx
     call printnum
+    pop rbx
     inc rbx
     cmp rbx, 36 
     jl .nextnum
@@ -72,8 +63,16 @@ _start:
 
 
 printnum:
+    cmp rbx, 0xa
+    jl .isdecimal
+    add rbx, 0x57
+    jmp .endif
+.isdecimal:
+    add rbx, 0x30
+.endif:
     mov rax, 1
     mov rdi, 1
+    mov [res], rbx
     mov [res+1], byte 10
     mov [res+2], byte 0
     mov rsi, res
