@@ -45,7 +45,6 @@ _start:
     syscall
     
     xor rbx, rbx
-    add rbx, 0x30
     call .nextnum
 
     mov     rax,60
@@ -54,10 +53,12 @@ _start:
 
 
 .nextnum:
+    add rbx, 0x30
     mov [res], rbx
+    sub rbx, 0x30
     call printnum
     inc rbx
-    cmp rbx, 0x39
+    cmp rbx, 9
     jle .nextnum
     ret
 
