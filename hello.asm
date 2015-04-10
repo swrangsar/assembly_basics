@@ -1,8 +1,29 @@
 ; nasm -f elf64 hello.asm
 ; ld -s -o hello hello.o
 
-section     .text
+
 global      _start
+
+
+
+section     .data
+
+msg db `Hello, world!\n`,0
+len equ $ - msg
+
+n1  dq  0x0807060504030201
+n2  dq  0x3030303030303030
+
+
+
+
+section     .bss
+res resb    8
+
+
+
+
+section     .text
 
 _start:
     mov     rax,1
@@ -27,13 +48,3 @@ _start:
     mov     rdi,0
     syscall
 
-section     .data
-
-msg db `Hello, world!\n`,0
-len equ $ - msg
-
-n1  dq  0x0807060504030201
-n2  dq  0x3030303030303030
-
-section     .bss
-res resb    8
