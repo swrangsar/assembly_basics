@@ -53,12 +53,22 @@ _start:
 
 
 .nextnum:
+    cmp rbx, 0xa
+    jl .isdigit
+    sub rbx, 0xa
+    add rbx, 0x61
+    mov [res], rbx
+    sub rbx, 0x61
+    add rbx, 0xa
+    jmp .endif
+.isdigit:
     add rbx, 0x30
     mov [res], rbx
     sub rbx, 0x30
+.endif:
     call printnum
     inc rbx
-    cmp rbx, 9
+    cmp rbx, 0xf 
     jle .nextnum
     ret
 
