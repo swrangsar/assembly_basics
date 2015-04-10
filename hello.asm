@@ -58,7 +58,7 @@ _start:
     call printnum
     inc rbx
     cmp rbx, 0x39
-    jna .nextnum
+    jle .nextnum
     ret
 
 
