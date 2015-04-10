@@ -43,8 +43,31 @@ _start:
     mov [res+8], byte 0xa
     mov rdx, 9
     syscall
+    
+    xor rbx, rbx
+    add rbx, 0x30
+    call .nextnum
 
     mov     rax,60
     mov     rdi,0
     syscall
 
+
+.nextnum:
+    mov [res], rbx
+    call printnum
+    inc rbx
+    cmp rbx, 0x39
+    jna .nextnum
+    ret
+
+
+printnum:
+    mov rax, 1
+    mov rdi, 1
+    mov [res+1], byte 10
+    mov [res+2], byte 0
+    mov rsi, res
+    mov rdx, 3
+    syscall
+    ret
