@@ -68,8 +68,8 @@ _start:
 .endif:
     call printnum
     inc rbx
-    cmp rbx, 0xf 
-    jle .nextnum
+    cmp rbx, 36 
+    jl .nextnum
     ret
 
 
