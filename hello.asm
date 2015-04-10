@@ -55,11 +55,9 @@ _start:
 .nextnum:
     cmp rbx, 0xa
     jl .isdigit
-    sub rbx, 0xa
-    add rbx, 0x61
+    add rbx, 0x57       ; 0x57 = 0x61 - 0xa
     mov [res], rbx
-    sub rbx, 0x61
-    add rbx, 0xa
+    sub rbx, 0x57
     jmp .endif
 .isdigit:
     add rbx, 0x30
