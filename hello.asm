@@ -19,8 +19,8 @@ _start:
     mov rax, 1
     mov rdi, 1
     mov rsi, res
-    mov [res+1], byte 0xa
-    mov rdx, 2
+    mov [res+8], byte 0xa
+    mov rdx, 9
     syscall
 
     mov     rax,60
@@ -29,11 +29,11 @@ _start:
 
 section     .data
 
-msg db 'Hello, world!',10,0
+msg db `Hello, world!\n`,0
 len equ $ - msg
 
-n1  db  77 
-n2  db  13
+n1  dq  0x0807060504030201
+n2  dq  0x3030303030303030
 
 section     .bss
-res resb    1
+res resb    8
